@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>js date</title>
+	<style type="text/css">
+		#clk{
+			text-align: center;
+			font-size: 50px;
+		}
+		.evn{
+			border: 5px dotted green;
+			background-color: yellow;
+		}
+		.odd{
+			border: 5px dotted blue;
+			background-color: lightblue;
+		}
+	</style>
+</head>
+<body id ="b">
+
+	<div id = "clk"></div><br/><br/>
+	<div id = "alm">
+		<form>
+			<input type="text" id="t">
+			<input type="button" value="Set" onclick="alarm1()" id="btnalm">
+		</form>
+		<span id="disp"></span>
+	</div>
+
+	<script type="text/javascript">
+		start();
+		var a;
+		var c;
+		var hh;
+		var mm;
+		var ss;
+		var bid;
+		function clock()
+		{
+			a = new Date();
+			c = document.getElementById("clk");
+			hh=a.getHours();
+			mm=a.getMinutes();
+			ss=a.getSeconds();
+			if(mm % 2 == 0)
+			{
+				c.classList.add("evn");
+				c.classList.remove("odd");
+			}
+			else
+			{
+				c.classList.add("odd");
+				c.classList.remove("evn");
+			}
+			c.innerHTML = hh + " : " + mm + " : " + ss;
+		}
+		function start()
+		{
+			var sc = setInterval(clock,1000);
+		}
+
+		function alarm1()
+		{
+			var sa = setInterval(setAlarm,1000);
+		}
+		function setAlarm()
+		{
+			bid = document.getElementById("b");
+			var al = document.getElementById("alm");
+			var tm = document.getElementById("t").value;
+			var m = tm.split(':');
+			var sn=0;
+			if(m[0] <= hh )
+			{
+				if(m[1] <= mm)
+				{
+					if(m[2] <= ss)
+					{
+						while(sn <=30)
+						{
+							if(ss  % 2 == 0)
+							{
+								b.style.backgroundColor = "red";
+							}
+							else
+							{
+								b.style.backgroundColor = "green";
+							}
+							var btn = document.getElementById("btnalm");
+							btn.value = "Stop";
+							sn+=1;
+						}
+						
+					}
+				}
+			}
+			var d = document.getElementById("disp");
+			d.innerHTML = "hello"  + m[0] + "   " + m[1] + "  " +m[2];
+		}
+	</script>
+</body>
+</html>

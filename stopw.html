@@ -1,0 +1,89 @@
+
+
+<html>
+	<head>
+		<style>
+			#show{
+				text-align : center;
+				border : 2px solid red;
+				font-size : 50px;
+			}
+			#logdet{
+				text-align : center;
+				border : 1px solid blue;
+				font-size : 30px;
+				width : 50%;
+			}
+		</style>
+	</head
+	
+	<body>
+		<form>
+			<input type = "button" onclick = "stopwatch('st')" value = "Start" id = "btnstart"/>
+			<input type = "button" onclick = "lap()" value = "Lapse" id = "btnlapse"/>
+			<input type = "button" onclick = "stopwatch('p')" value = "Pause" id = "btnpause"/>
+			<input type = "button" onclick = "stopwatch('o')" value = "Stop" id = "btnstop"/>
+			<div id = "show">
+				
+			</div>
+			
+			<div id = "logdet">
+				LOG:<br/>
+			</div>
+		</form>
+		
+		<script>
+			
+			var hh = 0;
+			var mm = 0;
+			var ss = 0;
+			
+			var s = document.getElementById("show");
+			
+			function start(ch)
+			{
+				var btns = document.getElementById("btnstart").value;
+				ss += 1;
+				if(ss >= 60)
+				{
+					ss = 0;
+					mm += 1;
+				}
+				if(mm >= 60)
+				{
+					mm = 0;
+					hh += 1;
+				}
+				//btn = hh + " : " + mm + " : " + ss;
+				
+				s.innerHTML = hh + " : " + mm + " : " + ss;
+			
+				
+			}
+			function lap()
+			{
+				var l = document.getElementById("logdet");
+				
+				l.innerHTML += hh + " : " + mm + " : " + ss + "<br/>";
+				s.innerHTML = hh + " : " + mm + " : " + ss;
+			}
+			function stopwatch(ch)
+			{
+				if(ch == "st")
+				{
+					var a = setInterval(start,1000);
+				}
+				if(ch == "o")
+				{
+					stp();
+				}
+			}
+			
+			
+			function stp()
+			{
+				s.innerHTML = hh + " : " + mm + " : " + ss;
+			}
+		</script>
+	</body>
+</html>
